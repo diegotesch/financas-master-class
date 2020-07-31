@@ -20,7 +20,7 @@ export class EntryService {
   getAll(): Observable<Entry[]> {
     return this.http.get(`${this.apiPath}`).pipe(
       catchError(this.handleError),
-      map(this.jsonDataToCategories)
+      map(this.jsonDataToEntries)
     );
   }
 
@@ -52,12 +52,12 @@ export class EntryService {
     );
   }
 
-  private jsonDataToCategories(jsonData: any[]): Entry[] {
-    return jsonData.map(element => element as Entry);
+  private jsonDataToEntries(jsonData: any[]): Entry[] {
+    return jsonData.map(element => Object.assign(new Entry(), element));
   }
 
   private jsonDataToEntry(jsonData: any): Entry {
-    return jsonData as Entry;
+    return Object.assign(new Entry(), jsonData);
   }
 
   private handleError(error: any): Observable<any> {
