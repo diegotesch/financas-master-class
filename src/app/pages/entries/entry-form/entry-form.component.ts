@@ -57,18 +57,21 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     this.entryForm = this.formBuilder.group({
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
-      description: [null]
+      description: [null],
+      type: [null, [Validators.required]],
+      amount: [null, [Validators.required]],
+      date: [null, [Validators.required]],
+      paid: [null, [Validators.required]],
+      categoryId: [null, [Validators.required]]
     })
   }
 
   private loadEntry() {
     if (this.currentAction == "edit") {
       this.route.paramMap.pipe(
-        // obtem o valor do id passado como parametro na rota e o usa para obter a categoria
         switchMap(params => this.entryService.getById(+params.get("id")))
       ).subscribe(entry => {
         this.entry = entry;
-        // faz o bind da categoria com o formulario (carrega os dados no formulario)
         this.entryForm.patchValue(this.entry);
       }, error => {
         alert('Ocorreu um erro no servidor, tente novamente mais tarde');
@@ -77,10 +80,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private setPageTitle() {
-    this.pageTitle = 'Cadastro de Categoria';
+    this.pageTitle = 'Novo Lançamento';
     if (this.currentAction !== 'new') {
       const entryName = this.entry.name || '';
-      this.pageTitle = `Editando categoria: ${entryName}`;
+      this.pageTitle = `Editando Lançamento: ${entryName}`;
     }
   }
 

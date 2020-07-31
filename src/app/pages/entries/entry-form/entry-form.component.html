@@ -4,7 +4,7 @@
       <a routerLink="/">Home</a>
     </li>
     <li class="breadcrumb-item">
-      <a routerLink="/entries">Categorias</a>
+      <a routerLink="/entries">Lançamentos</a>
     </li>
     <li class="breadcrumb-item active">
       {{ pageTitle }}
@@ -13,12 +13,12 @@
 </nav>
 
 <div class="row mb-4">
-  <div class="col-md">
+  <div class="col-md-9">
     <h1 class="h2 border-left pl-2">
       {{ pageTitle }}
     </h1>
   </div>
-  <div class="col-md">
+  <div class="col-md-3">
     <a routerLink="/entries" class="btn btn-light float-right">
       << Voltar </a>
   </div>
@@ -28,10 +28,10 @@
 
   <div class="card">
     <div class="card-header">
-      Informações sobre a categoria
+      Informações sobre o Lançamento
     </div>
 
-    <!-- <div class="card-body">
+    <div class="card-body">
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
@@ -48,7 +48,7 @@
           <input type="text" formControlName="description" id="descricption" class="form-control">
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 
   <div *ngIf="serverErrorMessages" class="alert alert-danger mt-4">
