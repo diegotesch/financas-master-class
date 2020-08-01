@@ -103,7 +103,7 @@
 
         <div class="form-group col-md-3">
           <label for="categoryId">Categoria</label>
-          <select name="categoryId" id="categoryId" formArrayName="categoryId" class="form-control">
+          <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-control">
           <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
         </select>
 
