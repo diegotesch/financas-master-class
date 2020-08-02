@@ -1,37 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Category } from './../shared/category.model';
 import { CategoryService } from './../shared/category.service';
+import { BaseResourceListComponent } from './../../../shared/components/base-resource-list.component';
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
-export class CategoryListComponent implements OnInit {
-
-  categories: Category[] = [];
+export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
   constructor(
     private categoryService: CategoryService
-  ) { }
-
-  ngOnInit() {
-    this.categoryService.getAll().subscribe(
-      categories => this.categories = categories,
-      error => alert('Erro ao carregar a lista')
-    );
-  }
-
-  deleteCategory(category) {
-    const deletar = confirm('Tem certeza de que deseja deletar a categoria?');
-
-    if (deletar) {
-      this.categoryService.delete(category.id).subscribe(
-        () => this.categories = this.categories.filter(cat => cat.id !== category.id),
-        () => alert('Erro ao tentar excluir')
-      );
-    }
-  }
+  ) {
+    super(categoryService);
+   }
 
 }
