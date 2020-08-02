@@ -16,7 +16,7 @@ export class EntryService extends BaseResourceService<Entry> {
     protected injetor: Injector,
     private categoryService: CategoryService
   ) {
-    super('api/entries', injetor);
+    super('api/entries', injetor, Entry.fromJson);
   }
 
   create(entry: Entry): Observable<Entry> {
@@ -35,14 +35,6 @@ export class EntryService extends BaseResourceService<Entry> {
         return super.update(entry);
       })
     );
-  }
-
-  protected jsonDataToResources(jsonData: any[]): Entry[] {
-    return jsonData.map(element => Object.assign(new Entry(), element));
-  }
-
-  protected jsonDataToResource(jsonData: any): Entry {
-    return Object.assign(new Entry(), jsonData);
   }
 
 }
