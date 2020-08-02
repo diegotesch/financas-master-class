@@ -22,7 +22,7 @@
         {{ entry.category.name }}
       </td>
       <td class="text-right">
-        <strong [class.text-success]="entry.type === 'reneveu'" [class.text-danger]="entry.type === 'expense'">{{ entry.amount }}</strong>
+        <strong [class.text-success]="entry.type === 'revenue'" [class.text-danger]="entry.type === 'expense'">{{ entry.amount }}</strong>
         <br><span class="badge badge-light">{{ entry.paidText }}</span>
       </td>
       <td class="text-center">
